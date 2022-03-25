@@ -1,7 +1,22 @@
-# Awesome Project Build with TypeORM
+## Se trata de um CRUD básico feito com TypeORM
 
-Steps to run this project:
+- temos uma demonstração de testes.
+- temos uma demonstração de workflow com Github Actions.
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+- Instalação
+```bash
+$ yarn install
+```
+
+- Rodando a aplicação
+```bash
+$ yarn start
+```
+
+- Testando as rotas
+```bash
+$ yarn test
+
+# teste em monitoramento
+$ yarn test:watch
+```

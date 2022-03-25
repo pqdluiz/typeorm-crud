@@ -1,0 +1,21 @@
+import "reflect-metadata";
+import "dotenv/config";
+
+import { createConnection } from "typeorm";
+import * as express from "express";
+import * as cors from "cors";
+import { router } from "./routes/routes";
+
+const app = express();
+const port = 5000;
+
+createConnection();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(router);
+
+app.listen(port, () => {
+  console.log(`Server running to port http://localhost:${port}`);
+});

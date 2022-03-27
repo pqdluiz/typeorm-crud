@@ -30,4 +30,34 @@ export class UserController {
       return response.status(400).json();
     }
   }
+
+  async put(
+    request: Request<User>,
+    response: Response<User>
+  ): Promise<Response<User, Record<string, any>>> {
+    const { id } = request.params;
+    const user = await User.findOne(id);
+    const data = await User.update(user, { id });
+
+    try {
+      return response.status(201).json(data);
+    } catch (error) {
+      return response.status(400).json();
+    }
+  }
+
+  async delete(
+    request: Request<User>,
+    response: Response<User>
+  ): Promise<Response<User, Record<string, any>>> {
+    const { id } = request.params;
+    const user = await User.findOne(id);
+    const data = await User.remove(user);
+
+    try {
+      return response.status(200).json(data);
+    } catch (error) {
+      return response.status(400).json();
+    }
+  }
 }

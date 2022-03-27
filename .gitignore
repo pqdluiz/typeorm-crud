@@ -5,4 +5,4 @@ build/
 tmp/
 temp/
 yarn-error.log
-gowftech.db
+typeorm.db

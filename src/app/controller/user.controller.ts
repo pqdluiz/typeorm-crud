@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { User } from "../entity/user.entity";
+import { User } from "../entity/User";
 
 export class UserController {
   async get(
     request: Request<User>,
-    response: Response
+    response: Response<User[]>
   ): Promise<Response<any, Record<string, any>>> {
     const data = request.body;
     const user = await User.find(data);
@@ -18,11 +18,10 @@ export class UserController {
 
   async post(
     request: Request<User>,
-    response: Response
+    response: Response<User>
   ): Promise<Response<any, Record<string, any>>> {
     const data = request.body;
-    const user = User.create(data);
-    const result = await User.save(user);
+    const result = await User.save(data);
 
     try {
       return response.status(201).json(result);
@@ -37,10 +36,10 @@ export class UserController {
   ): Promise<Response<User, Record<string, any>>> {
     const { id } = request.params;
     const user = await User.findOne(id);
-    const data = await User.update(user, { id });
+    const data = await User.save(user);
 
     try {
-      return response.status(201).json(data);
+      return response.status(201).json(data); 
     } catch (error) {
       return response.status(400).json();
     }

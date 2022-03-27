@@ -16,6 +16,7 @@ describe("UserController", () => {
   test("(GET) Espero o retorno de status 200 e o corpo da requisição", () => {
     const getUser = supertest(request.get).get("/");
     expect(user).toEqual(getUser);
+    expect(user).toEqual(200);
   });
 
   test("(POST) Espero o retorno de status 201 e o corpo da requisição", () => {
@@ -28,5 +29,22 @@ describe("UserController", () => {
 
     const getUser = supertest(request.post).post("/");
     expect(result).toEqual(getUser);
+    expect(user).toEqual(201);
+  });
+
+  test("(DELETE) Espero o retorno de status 201 e o corpo da requisição", () => {
+    const { id } = user;
+    const getUser = supertest(request.delete).delete("/:id");
+    
+    expect(id).toEqual(getUser);
+    expect(user).toEqual(200);
+  });
+
+  test("(PUT) Espero o retorno de status 200 e o corpo da requisição", () => {
+    const { id } = user;
+    const getUser = supertest(request.put).put("/:id");
+    
+    expect(id).toEqual(getUser);
+    expect(user).toEqual(200);
   });
 });

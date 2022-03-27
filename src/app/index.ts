@@ -9,7 +9,12 @@ import { router } from "./routes/routes";
 const app = express();
 const port = 5000;
 
-createConnection();
+createConnection({
+  type: "sqlite",
+  database: "gowftech.db",
+  entities: [__dirname + "/entity.{js,ts}"],
+  synchronize: true,
+});
 
 app.use(cors());
 app.use(express.json());
